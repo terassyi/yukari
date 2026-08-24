@@ -1,6 +1,46 @@
 {
   "checksums": [
     {
+      "id": "github_release/github.com/EmbarkStudios/cargo-deny/0.20.2/cargo-deny-0.20.2-aarch64-apple-darwin.tar.gz",
+      "checksum": "FE67D82A10D8597A3549364CB733A3F9CC1BFFF9031B7AE46384A9F2A72090C3",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/EmbarkStudios/cargo-deny/0.20.2/cargo-deny-0.20.2-aarch64-unknown-linux-musl.tar.gz",
+      "checksum": "995C82BE0DEFC7A025CAE49A2AA2644CE8245C9A3318FC4103907C6A285E8C7D",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/EmbarkStudios/cargo-deny/0.20.2/cargo-deny-0.20.2-x86_64-apple-darwin.tar.gz",
+      "checksum": "248DA7F581724E470071990C088FFC55C811981715F4CBDB258621FB79F8B7A6",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/EmbarkStudios/cargo-deny/0.20.2/cargo-deny-0.20.2-x86_64-unknown-linux-musl.tar.gz",
+      "checksum": "9F12ED4C49936E09B48BF862B595CDE2FE64FCBD9D74DFACAC6131CA824C8D5F",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/casey/just/1.58.0/just-1.58.0-aarch64-apple-darwin.tar.gz",
+      "checksum": "50AE3E996C974A0BF32EA7D10F495070DF33F1B43E0616B2769E3D4821ED8F48",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/casey/just/1.58.0/just-1.58.0-aarch64-unknown-linux-musl.tar.gz",
+      "checksum": "748237128C4C40CBDABC65E841D05CEBA13CC23A91EABA395495894C1D9764DF",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/casey/just/1.58.0/just-1.58.0-x86_64-apple-darwin.tar.gz",
+      "checksum": "9A09CFEF66AAA79DA58203970103A0684307716CAAABD3E9844CACC4DC0F4023",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/casey/just/1.58.0/just-1.58.0-x86_64-unknown-linux-musl.tar.gz",
+      "checksum": "4A5CC2F53E6F0F8C59092A6CC38291EB729D46A7DD95D3AE582008881B84931D",
+      "algorithm": "sha256"
+    },
+    {
       "id": "github_release/github.com/jqlang/jq/jq-1.8.2/jq-linux-amd64",
       "checksum": "B1C22172DD303F3BE49E935AA56AA48A8B7A46E0BC838B4997D3BB451495870F",
       "algorithm": "sha256"
@@ -79,6 +119,26 @@
       "id": "github_release/github.com/mikefarah/yq/v4.53.6/yq_linux_arm64",
       "checksum": "D7B42B08F3CC2CF115CEB0579C143A7FCCCEEE9E496075004BCBC34E173CFD0A4DACC0BDC6FC502C2869586B9FC949116DB5FE9BEF973C1A14568F4BD625EDFA",
       "algorithm": "sha512"
+    },
+    {
+      "id": "github_release/github.com/rhysd/actionlint/v1.7.12/actionlint_1.7.12_darwin_amd64.tar.gz",
+      "checksum": "5B44C3BC2255115C9B69E30EFC0FECDF498FDB63C5D58E17084FD5F16324C644",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/rhysd/actionlint/v1.7.12/actionlint_1.7.12_darwin_arm64.tar.gz",
+      "checksum": "ABA9CED2DEE8D27FECCA3DC7FEB1A7F9A52CAEFA1EB46F3271EA66B6E0E6953F",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/rhysd/actionlint/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz",
+      "checksum": "8ACA8DB96F1B94770F1B0D72B6DDDCB1EBB8123CB3712530B08CC387B349A3D8",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/rhysd/actionlint/v1.7.12/actionlint_1.7.12_linux_arm64.tar.gz",
+      "checksum": "325E971B6BA9BFA504672E29BE93C24981EEB1C07576D730E9F7C8805AFFF0C6",
+      "algorithm": "sha256"
     },
     {
       "id": "github_release/github.com/srl-labs/containerlab/v0.79.0/containerlab_0.79.0_linux_amd64.tar.gz",

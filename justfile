@@ -51,9 +51,23 @@ fmt-check:
 lint:
     cargo clippy --workspace --all-targets -- -D warnings
 
+# Check dependency licenses, advisories, and sources
+deny:
+    cargo-deny check
+
 # Remove build artifacts
 clean:
     cargo clean
+
+# --- CI ---------------------------------------------------------------------
+
+# Run everything CI runs
+ci: fmt-check lint test deny generate-check
+
+# Lint the GitHub Actions workflows
+lint-actions:
+    actionlint
+    pinact run --check
 
 # --- codegen ----------------------------------------------------------------
 #
@@ -63,13 +77,12 @@ clean:
 # that the pin still refers to the release it claims.
 
 # Print the pinned upstream mcs-api release and commit
-#
-# This stays a recipe rather than a backtick variable on purpose: just evaluates
-# backtick assignments on every invocation, which would run cargo metadata even
-# for `just build`.
 mcs-api-pin:
     #!/usr/bin/env bash
     set -euo pipefail
+    # This stays a recipe rather than a backtick variable on purpose: just
+    # evaluates backtick assignments on every invocation, which would run cargo
+    # metadata even for `just build`.
     pin="$(cargo metadata --format-version 1 --no-deps \
         | jq -r '.packages[] | select(.name == "{{ api_crate }}") | .metadata."mcs-api" | "\(.version) \(.commit)"')"
     case "${pin}" in

@@ -10,6 +10,12 @@ repository.workspace = true
 k8s-openapi.workspace = true
 kube = { workspace = true, features = ["derive"] }
 serde.workspace = true
+# Required by the code kube::CustomResource expands to
+serde_json.workspace = true
+
+# kopium renders the upstream Go doc comments verbatim, which trips this lint
+[lints.clippy]
+doc_lazy_continuation = "allow"
 
 # The upstream kubernetes-sigs/mcs-api release the generated bindings correspond
 # to. Kept as metadata rather than as the crate version: the crate version must

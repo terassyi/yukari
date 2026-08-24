@@ -1,0 +1,30 @@
+# aqua - Declarative CLI Version Manager
+# https://aquaproj.github.io/
+# checksum:
+#   enabled: true
+#   require_checksum: true
+#   supported_envs:
+#   - all
+checksum:
+  enabled: true
+  require_checksum: true
+  supported_envs:
+  - darwin
+  - linux
+registries:
+  - type: standard
+    ref: v4.554.0 # renovate: depName=aquaproj/aqua-registry
+  - name: local
+    type: local
+    path: registry.yaml
+packages:
+  - name: helm/helm@v4.2.4
+  - name: kubernetes-sigs/kind@v0.32.0
+  - name: kubernetes-sigs/kustomize@kustomize/v5.8.1
+  - name: kubernetes/kubectl@v1.36.4
+  - name: mikefarah/yq@v4.53.6
+  - name: srl-labs/containerlab@v0.79.0
+  - name: jqlang/jq@jq-1.8.2
+  - name: suzuki-shunsuke/pinact@v4.0.0
+  - name: crates.io/kopium@0.24.1
+    registry: local

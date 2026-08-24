@@ -1,0 +1,6 @@
+# Added by cargo
+
+/target
+
+# Reference clone of kubernetes-sigs/mcs-api (upstream Go repository)
+/mcs-api

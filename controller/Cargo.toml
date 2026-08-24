@@ -1,0 +1,17 @@
+[package]
+name = "yukari-controller"
+description = "Multi-Cluster Services controller"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+yukari-api.workspace = true
+
+k8s-openapi.workspace = true
+kube = { workspace = true, features = ["ring", "runtime", "rustls-tls"] }
+serde.workspace = true
+serde_json.workspace = true
+
+thiserror.workspace = true

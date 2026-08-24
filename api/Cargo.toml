@@ -1,0 +1,20 @@
+[package]
+name = "yukari-api"
+description = "Rust bindings for the Kubernetes Multi-Cluster Services API (multicluster.x-k8s.io)"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+k8s-openapi.workspace = true
+kube = { workspace = true, features = ["derive"] }
+serde.workspace = true
+
+# The upstream kubernetes-sigs/mcs-api release the generated bindings correspond
+# to. Kept as metadata rather than as the crate version: the crate version must
+# be free to move for binding-only changes, and Cargo's semver compatibility
+# rules apply to this crate's Rust API, not to the upstream Go API.
+[package.metadata.mcs-api]
+version = "v0.5.2"
+commit = "32672de8605f9719b9220992c75cb263ba6f3746"

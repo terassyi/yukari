@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+# aqua local (custom) registry
+# https://aquaproj.github.io/docs/reference/registry-config/
+packages:
+  # kopium はリリースアーカイブではなく crates.io から cargo install で導入する。
+  # cargo (Rust toolchain) が別途必要。
+  - name: crates.io/kopium
+    type: cargo
+    repo_owner: kube-rs
+    repo_name: kopium
+    description: Kubernetes OPenapI UnMangler
+    crate: kopium

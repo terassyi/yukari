@@ -1,0 +1,34 @@
+# cargo-deny configuration
+# https://embarkstudios.github.io/cargo-deny/
+
+[advisories]
+version = 2
+
+[licenses]
+version = 2
+# Permissive licenses only. Every entry below is required by the current
+# dependency graph; crates offering a choice resolve to one of these.
+allow = [
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "CDLA-Permissive-2.0",
+    "ISC",
+    "MIT",
+    "Unicode-3.0",
+    "Zlib",
+]
+
+[bans]
+# Duplicate versions come in transitively and are not something this repo can
+# fix, so report them without failing the build
+multiple-versions = "warn"
+wildcards = "deny"
+# The workspace uses path dependencies without a version requirement, which is
+# how per-crate versions stay independent
+allow-wildcard-paths = true
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

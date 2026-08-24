@@ -8,6 +8,8 @@
 //! This crate is versioned independently of upstream; the upstream release
 //! the bindings correspond to is [`MCS_API_VERSION`].
 
+pub mod v1beta1;
+
 /// The upstream [kubernetes-sigs/mcs-api] release the bindings in this crate are
 /// generated from.
 ///

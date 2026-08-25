@@ -1,0 +1,22 @@
+name: Set up aqua tools
+description: Restore the aqua tool cache and install aqua
+
+runs:
+  using: composite
+  steps:
+    # aqua downloads each tool on first use, so the contents of this directory
+    # depend on which tools the job actually runs. The key therefore includes the
+    # job: with one shared key, a job that never needs kopium could publish a
+    # cache that makes codegen-check rebuild it from source on every run.
+    - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: ~/.local/share/aquaproj-aqua
+        key: aqua-${{ runner.os }}-${{ github.job }}-${{ hashFiles('aqua.yaml', 'aqua-checksums.json', 'registry.yaml') }}
+        # The key covers every aqua-managed tool, so bumping an unrelated one
+        # would otherwise discard the whole cache
+        restore-keys: aqua-${{ runner.os }}-${{ github.job }}-
+    - uses: aquaproj/aqua-installer@96a9bc20066c5bf5e275b41019cfc165b25f4e2e # v4.0.5
+      with:
+        aqua_version: v2.60.1
+        # The local registry in registry.yaml requires the policy to be allowed
+        policy_allow: "true"

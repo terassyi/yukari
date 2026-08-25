@@ -1,4 +1,6 @@
 name: CI
+#
+# The `ci` recipe in the justfile mirrors these jobs for local runs.
 
 on:
   push:
@@ -20,32 +22,44 @@ jobs:
     runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/setup-rust
+      # Renovate bumps aqua packages without touching aqua-checksums.json, and
+      # aqua.yaml sets require_checksum, so a stale checksum file breaks every
+      # aqua-managed tool - `just` included. This runs first, and calls aqua
+      # directly rather than through `just checksum-check`, so that it can still
+      # report the cause when the stale package is one of the tools CI runs.
+      # `just update-checksum` is the fix.
+      - run: |
+          aqua update-checksum --prune
+          git diff --exit-code -- aqua-checksums.json
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - run: just fmt-check
       - run: just lint
+      # pinact resolves version comments through the GitHub API
+      - run: just lint-actions
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
   test:
     runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/setup-rust
       - run: just test
 
   codegen-check:
     runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      # aqua builds kopium from source, so keep its install directory across runs
-      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ~/.local/share/aquaproj-aqua
-          key: aqua-${{ runner.os }}-${{ hashFiles('aqua.yaml', 'aqua-checksums.json', 'registry.yaml') }}
-      - uses: ./.github/actions/setup
+      # kopium is built from source: the aqua cache keeps the binary, and the
+      # cargo cache keeps its dependencies warm for the runs that rebuild it
+      - uses: ./.github/actions/setup-rust
       - run: just generate-check
 
   deny:
     runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/setup-aqua
       - run: just deny

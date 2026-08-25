@@ -1,13 +1,9 @@
-name: Set up build tools
+name: Set up Rust build tools
 description: Install the aqua-managed tools and restore the Rust build cache
 
 runs:
   using: composite
   steps:
-    - uses: aquaproj/aqua-installer@96a9bc20066c5bf5e275b41019cfc165b25f4e2e # v4.0.5
-      with:
-        aqua_version: v2.60.1
-        # The local registry in registry.yaml requires the policy to be allowed
-        policy_allow: "true"
+    - uses: ./.github/actions/setup-aqua
     # rust-toolchain.toml pins the toolchain, which rustup installs on first use
     - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2

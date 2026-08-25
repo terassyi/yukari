@@ -62,12 +62,25 @@ clean:
 # --- CI ---------------------------------------------------------------------
 
 # Run everything CI runs
-ci: fmt-check lint test deny generate-check
+#
+# Keep in sync with the jobs in .github/workflows/ci.yaml. Like generate-check,
+# checksum-check regenerates a tracked file in place before diffing it, so a
+# failure leaves the regenerated file in the working tree. Both it and
+# lint-actions call the GitHub API, so set GITHUB_TOKEN to avoid rate limits.
+ci: fmt-check lint test deny lint-actions checksum-check generate-check
 
 # Lint the GitHub Actions workflows
 lint-actions:
     actionlint
     pinact run --check
+
+# Refresh aqua-checksums.json after changing aqua.yaml
+update-checksum:
+    aqua update-checksum --prune
+
+# Verify that aqua-checksums.json covers the pinned aqua packages
+checksum-check: update-checksum
+    git diff --exit-code -- aqua-checksums.json
 
 # --- codegen ----------------------------------------------------------------
 #

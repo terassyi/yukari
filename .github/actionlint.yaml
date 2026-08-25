@@ -1,0 +1,9 @@
+# actionlint configuration
+# https://github.com/rhysd/actionlint/blob/main/docs/config.md
+
+# ubuntu-26.04 is a GitHub-hosted image in preview, so actionlint 1.7.12 does not
+# carry the label in its known-runner list yet. Drop this once it does.
+paths:
+  .github/workflows/**:
+    ignore:
+      - 'label "ubuntu-26\.04" is unknown'

@@ -61,13 +61,16 @@ clean:
 
 # --- CI ---------------------------------------------------------------------
 
-# Run everything CI runs
-#
 # Keep in sync with the jobs in .github/workflows/ci.yaml. Like generate-check,
 # checksum-check regenerates a tracked file in place before diffing it, so a
 # failure leaves the regenerated file in the working tree. Both it and
 # lint-actions call the GitHub API, so set GITHUB_TOKEN to avoid rate limits.
-ci: fmt-check lint test deny lint-actions checksum-check generate-check
+#
+# checksum-check comes first for the same reason the workflow runs it first: a
+# stale aqua-checksums.json breaks every aqua-managed tool the later recipes
+# call, and the failure it produces there says nothing about the checksums.
+[doc("Run everything CI runs")]
+ci: checksum-check fmt-check lint test deny lint-actions generate-check
 
 # Lint the GitHub Actions workflows
 lint-actions:

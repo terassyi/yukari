@@ -52,8 +52,8 @@ jobs:
     runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      # kopium is built from source: the aqua cache keeps the binary, and the
-      # cargo cache keeps its dependencies warm for the runs that rebuild it
+      # kopium is built from source, and the aqua cache in setup-aqua keeps the
+      # built binary. generate-check itself only needs cargo for fmt and metadata.
       - uses: ./.github/actions/setup-rust
       - run: just generate-check
 
@@ -61,5 +61,6 @@ jobs:
     runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./.github/actions/setup-aqua
+      # cargo-deny shells out to cargo metadata, so this job needs the toolchain
+      - uses: ./.github/actions/setup-rust
       - run: just deny

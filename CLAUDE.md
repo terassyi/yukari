@@ -25,15 +25,18 @@ tool, `just` included, stops working.
 
 ## Generated code
 
-`api/src/v1beta1/` is **entirely generated**: `just generate` deletes and rebuilds the directory,
-`mod.rs` included. Never hand-edit it; hand-written helpers belong beside `lib.rs`.
+Bindings are scoped by API group and version, so a type is reached as
+`yukari_api::multicluster_x_k8s_io::v1beta1::ServiceImport`. The group directory is **entirely
+generated** — `just generate` deletes and rebuilds it, both `mod.rs` files included. Never hand-edit
+it; hand-written helpers belong beside `lib.rs`. Only the `pub mod` in `lib.rs` is hand-written, and
+the recipe fails if it is missing.
 
 ```
 api/Cargo.toml [package.metadata.mcs-api]   # the pin: version + commit
   -> just vendor-crd                        # needs the git-ignored ./mcs-api clone
   -> manifests/crd/*.yaml                   # committed, with a provenance header
   -> just generate                          # kopium
-  -> api/src/v1beta1/                       # committed
+  -> api/src/multicluster_x_k8s_io/v1beta1/ # committed
 ```
 
 The **commit** is the pin; the tag is only cross-checked against it. Bumping upstream means editing

@@ -7,8 +7,11 @@
 //!
 //! This crate is versioned independently of upstream; the upstream release
 //! the bindings correspond to is [`MCS_API_VERSION`].
+//!
+//! Types are scoped by API group and version, so `ServiceImport` lives at
+//! [`multicluster_x_k8s_io::v1beta1::ServiceImport`].
 
-pub mod v1beta1;
+pub mod multicluster_x_k8s_io;
 
 /// The upstream [kubernetes-sigs/mcs-api] release the bindings in this crate are
 /// generated from.
